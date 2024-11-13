@@ -18,3 +18,61 @@
     margin-right: .25rem;
   }
 }
+
+.btn {
+  all: unset;
+  font-size: .75rem;
+  background: var(--pastel4);
+  color: var(--pastel1);
+  border-radius: .5rem;
+  padding: .25rem .75rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.body {
+  padding: .75rem;
+  height: auto;
+  max-height: 100%;
+  background: var(--pastel4);
+  color: var(--pastel1);
+  border-radius: .875rem;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+  background: none;
+  color: var(--pastel1);
+  border: none;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+  background: var(--pastel4);
+  border: none;
+  color: var(--pastel1);
+}
+
+.p-datatable.p-datatable-scrollable>.p-datatable-wrapper>.p-datatable-table>.p-datatable-thead,
+.p-datatable.p-datatable-scrollable>.p-datatable-wrapper>.p-datatable-table>.p-datatable-tfoot,
+.p-datatable.p-datatable-scrollable>.p-datatable-wrapper>.p-scroller-viewport>.p-scroller>.p-datatable-table>.p-datatable-thead,
+.p-datatable.p-datatable-scrollable>.p-datatable-wrapper>.p-scroller-viewport>.p-scroller>.p-datatable-table>.p-datatable-tfoot {
+  background: none;
+}
+
+.p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: var(--pastel1);
+}
+
+.p-datatable .p-datatable-tbody>tr {
+  background: var(--pastel4);
+  border: none;
+  color: var(--pastel1);
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+  border: none;
+}
+
+.p-datatable.p-datatable-striped .p-datatable-tbody>tr:nth-child(even) {
+  background-color: var(--pastel1);
+  color: var(--pastel4);
+}

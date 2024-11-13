@@ -1,11 +1,12 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { dados } from './dados';
 import { ValorantService } from './valorant.service';
 
 type Agent = {
+  winRate: string;
   agentName: string,
   agentImg: string,
   wins: number,
@@ -26,8 +27,9 @@ type MapData = {
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ValorantService],
-  imports: [NgFor, NgIf, TableModule, TooltipModule]
+  viewProviders: [ValorantService],
+  imports: [NgFor, NgIf, TableModule, TooltipModule],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   title = 'Valorant App';
@@ -90,11 +92,10 @@ export class AppComponent implements OnInit {
       let worstAgent = null;
       let totalWins = 0;
 
-      // Ordena os agentes pela maior taxa de vitória primeiro
       winRates[map].agents.sort((a: any, b: any) => {
         const aWinRate = a.wins / a.matchCount;
         const bWinRate = b.wins / b.matchCount;
-        return bWinRate - aWinRate;  // Ordem decrescente
+        return bWinRate - aWinRate; 
       });
 
       winRates[map].agents.forEach((agent: any) => {
@@ -180,6 +181,42 @@ export class AppComponent implements OnInit {
     summary = `Com base nos dados, o seu melhor mapa é "${bestMapName}", acompanhado do agente "${bestAgentName}", formando assim a combinação mais eficiente. Por outro lado, o agente com o pior desempenho neste mapa é "${worstAgentName}".`;
 
     return summary;
+  }
+
+
+  exportToCSV(): void {
+    const header = ['Mapa', 'Agentes', 'Melhor Agente', 'Pior Agente', 'Taxa de Vitória', 'Total de Partidas'];
+    const rows: string[] = [];
+
+    rows.push(header.join(','));
+
+    this.winRatesArray.forEach((mapData) => {
+      const agentsNames = mapData.agents.map(agent => agent.agentName).join('/');
+      const bestAgentName = mapData.bestAgent ? `${mapData.bestAgent.agentName} - ${mapData.bestAgent.wins}/${mapData.bestAgent.matchCount} - ${mapData.bestAgent.winRate}` : '-';
+      const worstAgentName = mapData.worstAgent ? `${mapData.worstAgent.agentName} - ${mapData.worstAgent.wins}/${mapData.worstAgent.matchCount} - ${mapData.worstAgent.winRate}` : '-';
+
+      const row = [
+        mapData.mapName,
+        agentsNames,
+        bestAgentName,
+        worstAgentName,
+        mapData.winRate,
+        mapData.totalMatches.toString()
+      ];
+
+      rows.push(row.join(','));
+    });
+
+    const csvContent = rows.join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'winRates.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
 }

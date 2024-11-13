@@ -2,79 +2,83 @@
   <span class="m-0 font-bold text-2xl flex w-full justify-content-between">
     <p>{{ title }}</p>
     <p class="text-base">16-09-2024 até 05-11-2024</p>
+    <button class="btn" (click)="exportToCSV()">Exportar CSV</button>
   </span>
   <span class="font-semibold">{{generateSummary()}}</span>
 </div>
-<p-table [value]="winRatesArray" rowGroupMode="rowspan" groupRowsBy="mapName" sortField="mapName" sortMode="single"
-  [tableStyle]="{'min-width': '50%'}">
-  <ng-template pTemplate="header">
-    <tr>
-      <th style="width:3rem">#</th>
-      <th>Mapa</th>
-      <th>Agentes</th>
-      <th>Melhor Agente</th>
-      <th>Pior Agente</th>
-      <th>Taxa de Vitória</th>
-      <th>Total de Partidas</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-map let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
-    <tr>
-      <td>{{rowIndex}}</td>
-      <td *ngIf="rowgroup" [attr.rowspan]="rowspan" class="text-center">
-        <img alt="map image" [pTooltip]="map.mapName" [src]="map.mapImg" class="w-5rem shadow-2 border-round" />
-      </td>
-      <td>
-        <div class="flex gap-2">
-          <div *ngFor="let agent of map.agents">
-            <img [pTooltip]="tooltipContent" alt="agent image" [src]="agent.agentImg"
-              class="w-2rem h-2rem shadow-2 border-circle" />
-            <ng-template #tooltipContent>
-              <div class="flex flex-column text-sm">
-                <span><strong>Nome: {{agent.agentName}}</strong></span>
-                <span><strong>Partidas: {{agent.wins}} / {{agent.matchCount}} vitórias</strong></span>
-                <span><strong>Porcentagem: {{agent.winRate}}</strong></span>
-              </div>
-            </ng-template>
+<div class="body">
+  <p-table styleClass="p-datatable-striped p-datatable-gridlines" appendTo="body" [value]="winRatesArray"
+    rowGroupMode="rowspan" groupRowsBy="mapName" sortField="mapName" sortMode="single"
+    [tableStyle]="{'min-width': '50%'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width:3rem">#</th>
+        <th>Mapa</th>
+        <th>Agentes</th>
+        <th>Melhor Agente</th>
+        <th>Pior Agente</th>
+        <th>Taxa de Vitória</th>
+        <th>Total de Partidas</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-map let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
+      <tr>
+        <td>{{rowIndex}}</td>
+        <td *ngIf="rowgroup" [attr.rowspan]="rowspan" class="text-center">
+          <img alt="map image" [pTooltip]="map.mapName" [src]="map.mapImg" class="w-5rem shadow-2 border-round" />
+        </td>
+        <td>
+          <div class="flex gap-2">
+            <div *ngFor="let agent of map.agents">
+              <img [pTooltip]="tooltipContent" alt="agent image" [src]="agent.agentImg"
+                class="w-2rem h-2rem shadow-2 border-circle" />
+              <ng-template #tooltipContent>
+                <div class="flex flex-column text-sm">
+                  <span><strong>Nome: {{agent.agentName}}</strong></span>
+                  <span><strong>Partidas: {{agent.wins}} / {{agent.matchCount}} vitórias</strong></span>
+                  <span><strong>Porcentagem: {{agent.winRate}}</strong></span>
+                </div>
+              </ng-template>
+            </div>
           </div>
-        </div>
-      </td>
-      <td>
-        <div class="flex align-items-center gap-2">
-          <img [pTooltip]="map.bestAgent.agentName" *ngIf="map.bestAgent" alt="best agent image"
-            [src]="map.bestAgent.agentImg" class="agent-image" />
-          <div class="flex flex-column text-sm">
-            <span><strong>Nome: {{map.bestAgent.agentName}}</strong></span>
-            <span><strong>Partidas: {{map.bestAgent.wins}} / {{map.bestAgent.matchCount}} vitórias</strong></span>
-            <span><strong>Porcentagem: {{map.bestAgent.winRate}}</strong></span>
+        </td>
+        <td>
+          <div class="flex align-items-center gap-2">
+            <img [pTooltip]="map.bestAgent.agentName" *ngIf="map.bestAgent" alt="best agent image"
+              [src]="map.bestAgent.agentImg" class="agent-image" />
+            <div class="flex flex-column text-sm">
+              <span><strong>Nome: {{map.bestAgent.agentName}}</strong></span>
+              <span><strong>Partidas: {{map.bestAgent.wins}} / {{map.bestAgent.matchCount}} vitórias</strong></span>
+              <span><strong>Porcentagem: {{map.bestAgent.winRate}}</strong></span>
+            </div>
           </div>
-        </div>
-      </td>
-      <td>
-        <div class="flex align-items-center gap-2"
-          *ngIf="map.worstAgent && map.bestAgent.agentName !== map.worstAgent.agentName; else noWorstAgent">
-          <img [pTooltip]="map.worstAgent.agentName" alt="worst agent image" [src]="map.worstAgent.agentImg"
-            class="agent-image" />
-          <div class="flex flex-column text-sm">
-            <span><strong>Nome: {{map.worstAgent.agentName}}</strong></span>
-            <span><strong>Partidas: {{map.worstAgent.wins}} / {{map.worstAgent.matchCount}} vitórias</strong></span>
-            <span><strong>Porcentagem: {{map.worstAgent.winRate}}</strong></span>
+        </td>
+        <td>
+          <div class="flex align-items-center gap-2"
+            *ngIf="map.worstAgent && map.bestAgent.agentName !== map.worstAgent.agentName; else noWorstAgent">
+            <img [pTooltip]="map.worstAgent.agentName" alt="worst agent image" [src]="map.worstAgent.agentImg"
+              class="agent-image" />
+            <div class="flex flex-column text-sm">
+              <span><strong>Nome: {{map.worstAgent.agentName}}</strong></span>
+              <span><strong>Partidas: {{map.worstAgent.wins}} / {{map.worstAgent.matchCount}} vitórias</strong></span>
+              <span><strong>Porcentagem: {{map.worstAgent.winRate}}</strong></span>
+            </div>
           </div>
-        </div>
-        <ng-template #noWorstAgent>
-          <span>-</span>
-        </ng-template>
-      </td>
-      <td>
-        <div class="flex align-items-center">
-          <span>{{map.winRate}}</span>
-        </div>
-      </td>
-      <td>
-        <div class="flex align-items-center">
-          <span>{{map.totalMatches}}</span>
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+          <ng-template #noWorstAgent>
+            <span>-</span>
+          </ng-template>
+        </td>
+        <td>
+          <div class="flex align-items-center">
+            <span>{{map.winRate}}</span>
+          </div>
+        </td>
+        <td>
+          <div class="flex align-items-center">
+            <span>{{map.totalMatches}}</span>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,27 +1,80 @@
-# ValorantApp
+# Valorant App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
+Este é um aplicativo desenvolvido para analisar estatísticas de partidas no jogo Valorant. Ele usa dados extraídos da API da Tracker.gg, proporcionando uma visão detalhada sobre o desempenho dos agentes em diferentes mapas.
 
-## Development server
+## Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Exibe a taxa de vitória dos agentes por mapa.
+- Mostra o melhor e o pior agente para cada mapa.
+- Gera uma visão geral dos dados com o mapa de melhor desempenho e o agente mais eficiente.
+- Permite exportar os dados de taxa de vitórias para um arquivo CSV.
+- Exibe informações detalhadas sobre cada agente, como vitórias, partidas jogadas e taxa de vitória.
 
-## Code scaffolding
+## Origem da Base de Dados
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+A base de dados utilizada neste aplicativo é proveniente da API da Tracker.gg. A Tracker.gg fornece informações detalhadas sobre o desempenho dos jogadores em vários jogos, incluindo Valorant. A API pode ser acessada diretamente em [Tracker.gg Valorant API](https://tracker.gg/valorant).
 
-## Build
+## Requisitos
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Node.js
+- Angular 17+
+- PrimeNG
 
-## Running unit tests
+## Instalação
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clone o repositório:
 
-## Running end-to-end tests
+   ```bash
+   git clone <url-do-repositorio>
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Navegue até o diretório do projeto:
 
-## Further help
+   ```bash
+   cd <diretorio-do-projeto>
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+3. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+
+4. Inicie o servidor de desenvolvimento:
+
+   ```bash
+   ng serve
+   ```
+
+5. Abra o navegador e acesse:
+   ```
+   http://localhost:4200
+   ```
+
+## Como Funciona
+
+O aplicativo coleta dados sobre partidas jogadas de um jogador específico e analisa o desempenho de cada agente nos diferentes mapas. Através de cálculos de taxa de vitória e outras métricas, o aplicativo apresenta as informações de maneira visual e interativa.
+
+## Funcionalidades Principais
+
+- **Análise de Desempenho**: Cada mapa e agente tem suas estatísticas de vitórias e derrotas, sendo possível identificar o melhor e o pior agente em cada mapa.
+- **Geração de Resumo**: Um resumo gerado automaticamente detalha o melhor mapa e agente, assim como a combinação mais eficiente.
+- **Exportação de Dados**: O usuário pode exportar as estatísticas de vitórias de cada mapa e agente em um arquivo CSV para análise adicional.
+
+## Tecnologias Utilizadas
+
+- **Angular**: Framework front-end utilizado para desenvolver a interface do usuário.
+- **PrimeNG**: Biblioteca de componentes de interface de usuário (UI) usada para tabelas, botões e outras funcionalidades.
+- **API Tracker.gg**: A base de dados para informações sobre partidas e estatísticas de Valorant.
+
+## Contribuições
+
+Se você deseja contribuir com o projeto, sinta-se à vontade para fazer um fork e enviar um pull request. Se você encontrar algum problema ou tiver sugestões, abra uma issue no repositório.
+
+### Acessivel em 
+
+[Valorant-App](https://analise-dados-vava.netlify.app/) 
+
+## Equipe 
+
+[Taui](https://tracker.gg/valorant)
