@@ -71,9 +71,11 @@ O aplicativo coleta dados sobre partidas jogadas de um jogador específico e ana
 
 Se você deseja contribuir com o projeto, sinta-se à vontade para fazer um fork e enviar um pull request. Se você encontrar algum problema ou tiver sugestões, abra uma issue no repositório.
 
-### Acessivel em 
+### Sobre
 
-[Valorant-App](https://analise-dados-vava.netlify.app/) 
+Acessivel em: [Valorant-App](https://analise-dados-vava.netlify.app/)
+
+![localhost_4200_](https://github.com/user-attachments/assets/96cb5fb1-9f19-4b37-828f-699e53beaa62)
 
 ## Equipe 
 
