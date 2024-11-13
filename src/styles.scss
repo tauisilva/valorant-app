@@ -1,0 +1,26 @@
+@import "primeng/resources/themes/lara-light-purple/theme.css";
+@import "primeng/resources/primeng.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+  --pastel1: #DDE6ED;
+  --pastel2: #9DB2BF;
+  --pastel3: #526D82;
+  --pastel4: #27374D;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  padding: 0 .75rem;
+  background-color: var(--pastel1);
+  color: var(--pastel4);
+}
+
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+}
