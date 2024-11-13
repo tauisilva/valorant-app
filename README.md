@@ -76,7 +76,3 @@ Se você deseja contribuir com o projeto, sinta-se à vontade para fazer um fork
 Acessivel em: [Valorant-App](https://analise-dados-vava.netlify.app/)
 
 ![localhost_4200_](https://github.com/user-attachments/assets/96cb5fb1-9f19-4b37-828f-699e53beaa62)
-
-## Equipe 
-
-[Taui](https://tracker.gg/valorant)
