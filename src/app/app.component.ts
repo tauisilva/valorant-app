@@ -95,7 +95,7 @@ export class AppComponent implements OnInit {
       winRates[map].agents.sort((a: any, b: any) => {
         const aWinRate = a.wins / a.matchCount;
         const bWinRate = b.wins / b.matchCount;
-        return bWinRate - aWinRate; 
+        return bWinRate - aWinRate;
       });
 
       winRates[map].agents.forEach((agent: any) => {
@@ -129,6 +129,7 @@ export class AppComponent implements OnInit {
       const item = this.winRatesByMapAndAgent[key];
       result.push(item as MapData);
     });
+    console.log(result[0])
     return result.sort((a, b) => {
       const aWinRate = parseFloat(a.winRate.replace('%', ''));
       const bWinRate = parseFloat(b.winRate.replace('%', ''));
@@ -219,4 +220,7 @@ export class AppComponent implements OnInit {
     document.body.removeChild(link);
   }
 
+  getVlr() {
+    return dados.length;
+  }
 }

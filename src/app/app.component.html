@@ -1,7 +1,7 @@
 <div class="flex py-2 gap-1 flex-column">
   <span class="m-0 font-bold text-2xl flex w-full justify-content-between">
     <p>{{ title }}</p>
-    <p class="text-base">16-09-2024 até 05-11-2024</p>
+    <p class="text-base">16-09-2024 até 05-11-2024 - {{getVlr()}} dados</p>
     <button class="btn" (click)="exportToCSV()">Exportar CSV</button>
   </span>
   <span class="font-semibold">{{generateSummary()}}</span>
